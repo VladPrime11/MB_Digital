@@ -1,12 +1,9 @@
 from pathlib import Path
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-=lm=alq^$*i63l9qucm0*6#$*0ilnf4+i)7_&vc#4rs+pb*hk7'
-
-DEBUG = True
-
-ALLOWED_HOSTS = []
+SECRET_KEY = config('SECRET_KEY', default='fallback-secret-key')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -35,8 +32,7 @@ ROOT_URLCONF = 'DjangoMB.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -50,13 +46,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'DjangoMB.wsgi.application'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -74,15 +63,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 STATIC_URL = 'static/'
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
